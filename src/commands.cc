@@ -1245,6 +1245,7 @@ const CommandDesc echo_cmd = {
     "echo <params>...: display given parameters in the status line",
     ParameterDesc{
         { { "markup", { false, "parse markup" } },
+          { "quoted", { false, "quote each argument" } },
           { "to-file", { true, "echo contents to given filename" } },
           { "debug", { false, "write to debug buffer instead of status line" } } },
         ParameterDesc::Flags::SwitchesOnlyAtStart
@@ -1254,7 +1255,12 @@ const CommandDesc echo_cmd = {
     CommandCompleter{},
     [](const ParametersParser& parser, Context& context, const ShellContext&)
     {
-        String message = join(parser, ' ', false);
+        String message;
+        if (parser.get_switch("quoted"))
+            message = join(parser | transform(quote), ' ', false);
+        else
+            message = join(parser, ' ', false);
+
         if (auto filename = parser.get_switch("to-file"))
             return write_to_file(*filename, message);
 

@@ -208,7 +208,11 @@ of the file onto the filesystem
 
     *-to-file* <filename>:::
         write the given text to the given file on the host
-        filesystem.
+        filesystem
+
+    *-quoted*:::
+       print each argument inside single quotes, with literal quotes
+       doubled-up as would be necessary for command line parsing
 
 *set-face* <scope> <name> <facespec>::
     *alias* face +
