@@ -3,6 +3,10 @@
 This changelog contains major and/or breaking changes to Kakoune between
 released versions.
 
+== Development version
+
+* Replace NCursesUI with a custom terminal UI implementation
+
 == Kakoune 2020.08.04
 
 * Introduce `User` hook support.
